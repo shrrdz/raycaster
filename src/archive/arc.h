@@ -29,4 +29,9 @@ void A_ReadFile(const char *path);
 */
 void A_ReadEntry(int entry, void *destination);
 
+/*
+    returns the index of the desired entry (returns -1 if not found)
+*/
+int A_FindEntry(const char *name);
+
 #endif // __ARC_H__

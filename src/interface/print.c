@@ -14,3 +14,16 @@ void I_Error(const char *output, ...)
 
     exit(EXIT_FAILURE);
 }
+
+void I_Warning(const char *output, ...)
+{
+    va_list args;
+
+    printf("warning: ");
+
+    va_start(args, output);
+    vprintf(output, args);
+    va_end(args);
+
+    printf("\n");
+}

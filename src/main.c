@@ -6,7 +6,7 @@ int main()
 
     unsigned char palette[768];
 
-    A_ReadEntry(0, palette);
+    A_ReadEntry(A_FindEntry("PALETTE"), palette);
 
     for (int i = 0; i < 768; i += 3)
     {

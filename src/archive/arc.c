@@ -57,3 +57,18 @@ void A_ReadEntry(int entry, void *destination)
 
     fclose(handle);
 }
+
+int A_FindEntry(const char *name)
+{
+    for (int i = 0; i < header.entry_count; i++)
+    {
+        if (!strcmp(entries[i].name, name))
+        {
+            return i;
+        }
+    }
+
+    I_Warning("A_FindEntry(): entry '%s' not found", name);
+
+    return -1;
+}
