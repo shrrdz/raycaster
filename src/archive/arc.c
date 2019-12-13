@@ -3,6 +3,9 @@
 arc_header_t header;
 arc_entry_t *entries;
 
+// path to the currently loaded archive
+const char *archive;
+
 void A_ReadFile(const char *path)
 {
     FILE *handle = fopen(path, "rb");
@@ -27,6 +30,30 @@ void A_ReadFile(const char *path)
     {
         fread(&entries[i], sizeof(arc_entry_t), 1, handle);
     }
+
+    fclose(handle);
+
+    archive = path;
+}
+
+void A_ReadEntry(int entry, void *destination)
+{
+    if (entry < 0 || entry > header.entry_count)
+    {
+        I_Error("A_ReadEntry(): invalid entry index");
+    }
+
+    FILE *handle = fopen(archive, "rb");
+
+    if (handle == NULL)
+    {
+        I_Error("A_ReadEntry(): failed to open file");
+    }
+
+    arc_entry_t *entry_info = &entries[entry];
+
+    fseek(handle, entry_info->offset, SEEK_SET);
+    fread(destination, 1, entry_info->size, handle);
 
     fclose(handle);
 }

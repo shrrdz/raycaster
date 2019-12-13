@@ -24,4 +24,9 @@ extern arc_entry_t *entries;
 */
 void A_ReadFile(const char *path);
 
+/*
+    reads the data of the entry with the given index
+*/
+void A_ReadEntry(int entry, void *destination);
+
 #endif // __ARC_H__
