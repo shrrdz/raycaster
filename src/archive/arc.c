@@ -3,6 +3,9 @@
 arc_header_t header;
 arc_entry_t *entries;
 
+// cached entry data
+void **entry_data;
+
 // path to the currently loaded archive
 const char *archive;
 
@@ -34,6 +37,8 @@ void A_ReadFile(const char *path)
     fclose(handle);
 
     archive = path;
+
+    A_CacheEntries();
 }
 
 void A_ReadEntry(int entry, void *destination)
@@ -71,4 +76,21 @@ int A_FindEntry(const char *name)
     I_Warning("A_FindEntry(): entry '%s' not found", name);
 
     return -1;
+}
+
+void *A_GetEntry(const char *name)
+{
+    return entry_data[A_FindEntry(name)];
+}
+
+void A_CacheEntries()
+{
+    entry_data = calloc(header.entry_count, sizeof(void *));
+
+    for (int i = 0; i < header.entry_count; i++)
+    {
+        entry_data[i] = malloc(entries[i].size);
+    }
+
+    A_ReadEntry(A_FindEntry("PALETTE"), entry_data[0]);
 }

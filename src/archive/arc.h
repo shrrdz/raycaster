@@ -17,10 +17,8 @@ typedef struct arc_entry_t
     char name[8];
 } arc_entry_t;
 
-extern arc_entry_t *entries;
-
 /*
-    reads the given file and its entries
+    reads the given file and caches all its entries
 */
 void A_ReadFile(const char *path);
 
@@ -33,5 +31,15 @@ void A_ReadEntry(int entry, void *destination);
     returns the index of the desired entry (returns -1 if not found)
 */
 int A_FindEntry(const char *name);
+
+/*
+    returns the data of the desired entry from the cache
+*/
+void *A_GetEntry(const char *name);
+
+/*
+    reads the data of each entry and puts them all into an array of pointers pointing to that data
+*/
+void A_CacheEntries();
 
 #endif // __ARC_H__
