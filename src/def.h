@@ -6,12 +6,15 @@
 //-----------------------------------------------------//
 
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 
 //-----------------------------------------------------//
 
 #include "archive/arc.h"
+
+#include "interface/print.h"
 
 //-----------------------------------------------------//
 
