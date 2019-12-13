@@ -2,7 +2,7 @@
 
 int main()
 {
-    printf("hello, world!");
+    A_ReadFile("arc/all.arc");
 
     return 0;
 }
