@@ -12,6 +12,10 @@
 
 //-----------------------------------------------------//
 
+typedef unsigned char byte;
+
+//-----------------------------------------------------//
+
 #include "archive/arc.h"
 
 #include "interface/print.h"

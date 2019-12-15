@@ -4,7 +4,7 @@ int main()
 {
     A_ReadFile("arc/all.arc");
 
-    unsigned char *palette = A_GetEntry("PALETTE");
+    byte *palette = A_GetEntry("PALETTE");
 
     for (int i = 0; i < 768; i += 3)
     {
