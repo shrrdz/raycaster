@@ -7,6 +7,7 @@ typedef struct video_t
 {
     int width, height;
 
+    int palette[256];
     int *color_buffer;
 } video_t;
 
@@ -26,5 +27,10 @@ void V_Update();
     sets all the pixels' color in the color buffer to the given color
 */
 void V_Clear(int color);
+
+/*
+    sets a color palette used by the video
+*/
+void V_SetPalette(const byte *palette);
 
 #endif // __VIDEO_H__

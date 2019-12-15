@@ -19,6 +19,8 @@ void V_Init(int width, int height)
     video.height = height;
 
     video.color_buffer = malloc(video.width * video.height * sizeof(int));
+
+    V_SetPalette(A_GetEntry("PALETTE"));
 }
 
 void V_Update()
@@ -37,5 +39,17 @@ void V_Clear(int color)
     for (int i = 0; i < video.width * video.height; i++)
     {
         video.color_buffer[i] = color;
+    }
+}
+
+void V_SetPalette(const byte *palette)
+{
+    for (int i = 0; i < 256; i++)
+    {
+        byte r = palette[i * 3 + 0];
+        byte g = palette[i * 3 + 1];
+        byte b = palette[i * 3 + 2];
+
+        video.palette[i] = (0xFF << 24) | (b << 16) | (g << 8) | r;
     }
 }
