@@ -8,6 +8,8 @@ int main()
 
     for (;;)
     {
+        I_AcceptInput();
+
         V_Clear(video.palette[0]);
 
         V_Update();

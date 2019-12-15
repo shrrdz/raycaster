@@ -20,6 +20,7 @@ typedef unsigned char byte;
 
 #include "archive/arc.h"
 
+#include "interface/input.h"
 #include "interface/print.h"
 
 #include "video/video.h"
