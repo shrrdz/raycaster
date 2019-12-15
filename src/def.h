@@ -23,6 +23,8 @@ typedef unsigned char byte;
 #include "interface/input.h"
 #include "interface/print.h"
 
+#include "render/render.h"
+
 #include "video/video.h"
 
 //-----------------------------------------------------//

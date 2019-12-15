@@ -12,6 +12,11 @@ int main()
 
         V_Clear(video.palette[0]);
 
+        for (int i = 0; i <= (video.width >> 1); i++)
+        {
+            R_RenderColumn(i, 0, video.height - 1, video.palette[137]);
+        }
+
         V_Update();
     }
 
