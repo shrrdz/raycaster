@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <SDL2/SDL.h>
+
 //-----------------------------------------------------//
 
 typedef unsigned char byte;
@@ -19,6 +21,8 @@ typedef unsigned char byte;
 #include "archive/arc.h"
 
 #include "interface/print.h"
+
+#include "video/video.h"
 
 //-----------------------------------------------------//
 

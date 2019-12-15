@@ -6,9 +6,13 @@ int main()
 
     byte *palette = A_GetEntry("PALETTE");
 
-    for (int i = 0; i < 768; i += 3)
+    V_Init(800, 600);
+
+    for (;;)
     {
-        printf("%u %u %u\n", palette[i], palette[i + 1], palette[i + 2]);
+        V_Clear((0xFF << 24) | (palette[2] << 16) | (palette[1] << 8) | palette[0]);
+
+        V_Update();
     }
 
     return 0;
