@@ -18,10 +18,16 @@ typedef unsigned char byte;
 
 //-----------------------------------------------------//
 
+#define MAP_SIZE   8
+
+//-----------------------------------------------------//
+
 #include "archive/arc.h"
 
 #include "interface/input.h"
 #include "interface/print.h"
+
+#include "play/level.h"
 
 #include "render/render.h"
 

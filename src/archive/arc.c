@@ -93,4 +93,5 @@ void A_CacheEntries()
     }
 
     A_ReadEntry(A_FindEntry("PALETTE"), entry_data[0]);
+    A_ReadEntry(A_FindEntry("MAP"), entry_data[1]);
 }
