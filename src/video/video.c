@@ -17,6 +17,7 @@ void V_Init(int width, int height)
 
     video.width = width;
     video.height = height;
+    video.aspect_ratio = (float) video.width / (float) video.height;
 
     video.color_buffer = malloc(video.width * video.height * sizeof(int));
 

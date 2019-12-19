@@ -5,6 +5,7 @@
 
 //-----------------------------------------------------//
 
+#include <math.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -18,7 +19,27 @@ typedef unsigned char byte;
 
 //-----------------------------------------------------//
 
-#define MAP_SIZE   8
+typedef struct vec2
+{
+    float x, y;
+} vec2;
+
+//-----------------------------------------------------//
+
+#define MAP_SIZE        8
+
+#define COLOR_WALL      video.palette[47]
+#define COLOR_FLOOR     video.palette[7]
+#define COLOR_CEILING   video.palette[4]
+
+//-----------------------------------------------------//
+
+#define max(x, y) (((x) > (y)) ? (x) : (y))
+#define min(x, y) (((x) < (y)) ? (x) : (y))
+
+#define sign(x) ((x) > 0) - ((x) < 0)
+
+#define frac(x) ((x) - floorf(x))
 
 //-----------------------------------------------------//
 
@@ -29,6 +50,7 @@ typedef unsigned char byte;
 
 #include "play/level.h"
 
+#include "render/raycast.h"
 #include "render/render.h"
 
 #include "video/video.h"
