@@ -19,6 +19,13 @@ typedef unsigned char byte;
 
 //-----------------------------------------------------//
 
+typedef enum wall_side
+{
+    X, Y
+} wall_side;
+
+//-----------------------------------------------------//
+
 typedef struct vec2
 {
     float x, y;
@@ -29,6 +36,8 @@ typedef struct vec2
 #define MAP_SIZE        8
 
 #define COLOR_WALL      video.palette[47]
+#define COLOR_DARKWALL  video.palette[44]
+
 #define COLOR_FLOOR     video.palette[7]
 #define COLOR_CEILING   video.palette[4]
 

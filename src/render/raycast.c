@@ -71,11 +71,16 @@ void R_Raycast()
         // *perpendicular* distance to the wall (perpendicular in order to avoid fish-eye distortion)
         float distance = 0.0F;
 
+        // side of the wall hit by the ray
+        wall_side side = X;
+
         // cast a ray to each block on the grid using DDA until it hits a wall
         for (;;)
         {
             if (intercept.x < intercept.y) // intersected the x-line of the grid
             {
+                side = X;
+
                 // step in x
                 intercept.x += step.x;
                 ray_position.x += tile_step.x;
@@ -84,6 +89,8 @@ void R_Raycast()
             }
             else // intersected the y-line of the grid
             {
+                side = Y;
+
                 // step in y
                 intercept.y += step.y;
                 ray_position.y += tile_step.y;
@@ -111,6 +118,6 @@ void R_Raycast()
         R_RenderColumn(x, wall_end + 1, video.height - 1, COLOR_FLOOR);
 
         // render the walls
-        R_RenderColumn(x, wall_start, wall_end, COLOR_WALL);
+        R_RenderColumn(x, wall_start, wall_end, (side == X) ? COLOR_WALL : COLOR_DARKWALL);
     }
 }
