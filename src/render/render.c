@@ -7,8 +7,10 @@ void R_RenderColumn(int x, int start, int end, int color)
         I_Error("R_RenderColumn(): from %d to %d at x: %d", start, end, x);
     }
 
-    for (int y = start; y <= end; y++)
+    int index = start * video.width + x;
+
+    for (int y = start; y <= end; y++, index += video.width)
     {
-        video.color_buffer[y * video.width + x] = color;
+        video.color_buffer[index] = color;
     }
 }
