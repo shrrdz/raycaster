@@ -56,6 +56,7 @@ typedef struct vec2
 
 #include "interface/input.h"
 #include "interface/print.h"
+#include "interface/tick.h"
 
 #include "play/level.h"
 

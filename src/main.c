@@ -11,6 +11,7 @@ int main()
     for (;;)
     {
         I_AcceptInput();
+        I_Tick();
 
         R_Raycast();
 
