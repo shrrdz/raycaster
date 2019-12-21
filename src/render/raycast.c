@@ -12,19 +12,13 @@
             +y
 */
 
-vec2 ray_origin = { 1.5F, 3.5F };
-
-vec2 look_direction = { 1.0F, 0.0F };
-
-vec2 plane;
-
 void R_Raycast()
 {
     float half_fov = video.aspect_ratio * 0.5F;
 
     // calculate the plane vector
-    plane.x = -look_direction.y * half_fov;
-    plane.y =  look_direction.x * half_fov;
+    player.plane.x = -player.direction.y * half_fov;
+    player.plane.y =  player.direction.x * half_fov;
 
     // cast a ray for each column of the screen width
     for (int x = 0; x < video.width; x++)
@@ -35,15 +29,15 @@ void R_Raycast()
         // current position of the ray
         vec2 ray_position =
         {
-            floorf(ray_origin.x),
-            floorf(ray_origin.y)
+            floorf(player.position.x),
+            floorf(player.position.y)
         };
 
         // direction of the ray in world space
         vec2 ray_direction =
         {
-            look_direction.x + plane.x * ndc_x,
-            look_direction.y + plane.y * ndc_x
+            player.direction.x + player.plane.x * ndc_x,
+            player.direction.y + player.plane.y * ndc_x
         };
 
         // distance the ray has to travel from one grid boundary to the next grid boundary of the same axis
@@ -57,8 +51,8 @@ void R_Raycast()
         // distance between the ray's origin to the first grid boundary along each axis
         vec2 intercept =
         {
-            (ray_direction.x > 0.0F) ? (ray_position.x + 1.0F - ray_origin.x) * step.x : (ray_origin.x - ray_position.x) * step.x,
-            (ray_direction.y > 0.0F) ? (ray_position.y + 1.0F - ray_origin.y) * step.y : (ray_origin.y - ray_position.y) * step.y
+            (ray_direction.x > 0.0F) ? (ray_position.x + 1.0F - player.position.x) * step.x : (player.position.x - ray_position.x) * step.x,
+            (ray_direction.y > 0.0F) ? (ray_position.y + 1.0F - player.position.y) * step.y : (player.position.y - ray_position.y) * step.y
         };
 
         // size of the tile step (signed depending on the direction the ray travels)

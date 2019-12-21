@@ -59,6 +59,7 @@ typedef struct vec2
 #include "interface/tick.h"
 
 #include "play/level.h"
+#include "play/player.h"
 
 #include "render/raycast.h"
 #include "render/render.h"

@@ -5,6 +5,7 @@ int main()
     A_ReadFile("arc/all.arc");
 
     P_InitLevel();
+    P_InitPlayer();
 
     V_Init(800, 600);
 
