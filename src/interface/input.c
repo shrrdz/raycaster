@@ -6,6 +6,42 @@ void I_InputPoll()
 {
     const uint8_t *key = SDL_GetKeyboardState(NULL);
 
+    float speed = key[SDL_SCANCODE_LSHIFT] ? PLAYER_SPEED_SPRINT : PLAYER_SPEED;
+
+    vec2 right =
+    {
+        -player.direction.y,
+         player.direction.x
+    };
+
+    vec2 delta = { 0.0F, 0.0F };
+
+    if (key[SDL_SCANCODE_W])
+    {
+        delta.x += player.direction.x;
+        delta.y += player.direction.y;
+    }
+
+    if (key[SDL_SCANCODE_S])
+    {
+        delta.x -= player.direction.x;
+        delta.y -= player.direction.y;
+    }
+
+    if (key[SDL_SCANCODE_A])
+    {
+        delta.x -= right.x;
+        delta.y -= right.y;
+    }
+
+    if (key[SDL_SCANCODE_D])
+    {
+        delta.x += right.x;
+        delta.y += right.y;
+    }
+
+    P_PlayerTranslate(delta, speed);
+
     if (key[SDL_SCANCODE_LEFT])
     {
         P_PlayerRotate(-PLAYER_SENSITIVITY * tick_delta);

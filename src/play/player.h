@@ -3,6 +3,9 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+#define PLAYER_SPEED            4.0F
+#define PLAYER_SPEED_SPRINT     8.0F
+
 #define PLAYER_SENSITIVITY      2.0F
 
 typedef struct player_t
@@ -21,6 +24,7 @@ extern player_t player;
 
 void P_InitPlayer();
 
+void P_PlayerTranslate(vec2 direction, float speed);
 void P_PlayerRotate(float radians);
 
 #endif // __PLAYER_H__

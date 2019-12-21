@@ -14,6 +14,20 @@ void P_InitPlayer()
     player.plane.y = 0.0F;
 }
 
+void P_PlayerTranslate(vec2 direction, float speed)
+{
+    float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
+
+    if (length > 0.0F)
+    {
+        direction.x *= speed * tick_delta;
+        direction.y *= speed * tick_delta;
+
+        player.position.x += direction.x;
+        player.position.y += direction.y;
+    }
+}
+
 void P_PlayerRotate(float radians)
 {
     /*
