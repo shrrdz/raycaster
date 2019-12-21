@@ -6,9 +6,14 @@ void I_InputPoll()
 {
     const uint8_t *key = SDL_GetKeyboardState(NULL);
 
-    if (key[SDL_SCANCODE_SPACE])
+    if (key[SDL_SCANCODE_LEFT])
     {
-        printf("I_InputPoll(): spacebar pressed\n");
+        P_PlayerRotate(-PLAYER_SENSITIVITY * tick_delta);
+    }
+
+    if (key[SDL_SCANCODE_RIGHT])
+    {
+        P_PlayerRotate(PLAYER_SENSITIVITY * tick_delta);
     }
 }
 

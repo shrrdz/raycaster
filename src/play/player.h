@@ -3,6 +3,8 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+#define PLAYER_SENSITIVITY      2.0F
+
 typedef struct player_t
 {
     // current position of the player (also the origin of the ray)
@@ -18,5 +20,7 @@ typedef struct player_t
 extern player_t player;
 
 void P_InitPlayer();
+
+void P_PlayerRotate(float radians);
 
 #endif // __PLAYER_H__
