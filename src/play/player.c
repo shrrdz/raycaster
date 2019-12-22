@@ -20,6 +20,10 @@ void P_PlayerTranslate(vec2 direction, float speed)
 
     if (length > 0.0F)
     {
+        // normalize to prevent additional speed upon diagonal input
+        direction.x /= length;
+        direction.y /= length;
+
         direction.x *= speed * tick_delta;
         direction.y *= speed * tick_delta;
 
