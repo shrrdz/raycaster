@@ -67,7 +67,7 @@ int A_FindEntry(const char *name)
 {
     for (int i = 0; i < header.entry_count; i++)
     {
-        if (!strcmp(entries[i].name, name))
+        if (!strncmp(entries[i].name, name, 8))
         {
             return i;
         }
