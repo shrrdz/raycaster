@@ -35,9 +35,6 @@ typedef struct vec2
 
 #define MAP_SIZE        8
 
-#define COLOR_WALL      video.palette[47]
-#define COLOR_DARKWALL  video.palette[44]
-
 #define COLOR_FLOOR     video.palette[7]
 #define COLOR_CEILING   video.palette[4]
 
@@ -47,6 +44,8 @@ typedef struct vec2
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
 #define sign(x) ((x) > 0) - ((x) < 0)
+
+#define clamp(x, lo, hi) (((x) > (hi)) ? (hi) : (((x) < (lo)) ? (lo) : (x)))
 
 #define frac(x) ((x) - floorf(x))
 
@@ -63,6 +62,7 @@ typedef struct vec2
 
 #include "render/raycast.h"
 #include "render/render.h"
+#include "render/texture.h"
 
 #include "video/video.h"
 

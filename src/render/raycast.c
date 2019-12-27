@@ -65,6 +65,9 @@ void R_Raycast()
         // *perpendicular* distance to the wall (perpendicular in order to avoid fish-eye distortion)
         float distance = 0.0F;
 
+        // exact point where the ray hits the wall
+        float hit = 0.0F;
+
         // side of the wall hit by the ray
         wall_side side = X;
 
@@ -80,6 +83,7 @@ void R_Raycast()
                 ray_position.x += tile_step.x;
 
                 distance = intercept.x - step.x;
+                hit = player.position.y + ray_direction.y * distance;
             }
             else // intersected the y-line of the grid
             {
@@ -90,6 +94,7 @@ void R_Raycast()
                 ray_position.y += tile_step.y;
 
                 distance = intercept.y - step.y;
+                hit = player.position.x + ray_direction.x * distance;
             }
 
             // the ray has hit a wall
@@ -112,6 +117,6 @@ void R_Raycast()
         R_RenderColumn(x, wall_end + 1, video.height - 1, COLOR_FLOOR);
 
         // render the walls
-        R_RenderColumn(x, wall_start, wall_end, (side == X) ? COLOR_WALL : COLOR_DARKWALL);
+        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side);
     }
 }

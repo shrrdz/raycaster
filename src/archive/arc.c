@@ -94,4 +94,6 @@ void A_CacheEntries()
 
     A_ReadEntry(A_FindEntry("PALETTE"), entry_data[0]);
     A_ReadEntry(A_FindEntry("MAP"), entry_data[1]);
+    A_ReadEntry(A_FindEntry("TEXTURE0"), entry_data[2]);
+    A_ReadEntry(A_FindEntry("TEXTURE1"), entry_data[3]);
 }

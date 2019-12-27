@@ -4,6 +4,8 @@ int main()
 {
     A_ReadFile("arc/all.arc");
 
+    R_InitTextures();
+
     P_InitLevel();
     P_InitPlayer();
 
