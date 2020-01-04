@@ -83,6 +83,16 @@ void *A_GetEntry(const char *name)
     return entry_data[A_FindEntry(name)];
 }
 
+void *A_GetEntryByIndex(int entry)
+{
+    if (entry < 0 || entry >= header.entry_count)
+    {
+        I_Error("A_GetEntryByIndex(): invalid entry index");
+    }
+
+    return entry_data[entry];
+}
+
 void A_CacheEntries()
 {
     entry_data = calloc(header.entry_count, sizeof(void *));

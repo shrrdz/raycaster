@@ -72,6 +72,11 @@ int A_FindEntry(const char *name);
 void *A_GetEntry(const char *name);
 
 /*
+    returns the data of the desired entry from the cache
+*/
+void *A_GetEntryByIndex(int entry);
+
+/*
     reads the data of each entry and puts them all into an array of pointers pointing to that data
 */
 void A_CacheEntries();
