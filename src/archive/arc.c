@@ -103,7 +103,9 @@ void A_CacheEntries()
     }
 
     A_ReadEntry(A_FindEntry("PALETTE"), entry_data[0]);
-    A_ReadEntry(A_FindEntry("MAP"), entry_data[1]);
+
+    A_ReadEntry(A_FindEntry("TILEMAP"), entry_data[1]);
+    A_ReadEntry(A_FindEntry("TEXTMAP"), entry_data[2]);
 
     // "T_START" and "T_END" entries serve as texture data delimiters
     int first_texture = A_FindEntry("T_START") + 1;

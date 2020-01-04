@@ -15,7 +15,7 @@ void R_RenderColumn(int x, int start, int end, int color)
     }
 }
 
-void R_RenderColumnTextured(int x, int start, int end, int wall_height, float wall_hit, int side)
+void R_RenderColumnTextured(int x, int start, int end, int wall_height, float wall_hit, int side, int texture_id)
 {
     if (x < 0 || x >= video.width || start < 0 || end >= video.height)
     {
@@ -28,8 +28,8 @@ void R_RenderColumnTextured(int x, int start, int end, int wall_height, float wa
     // u-coordinate of the texture (fixed for the whole screen column)
     int texture_u = clamp(wall_hit * TEXTURE_SIZE, 0, TEXTURE_SIZE - 1);
 
-    // TODO: pass in a texture id instead of hardcoding an index
-    byte *texture_data = (side == X) ? textures[0] : textures[1];
+    // darker version of each texture is stored right next to the original version
+    byte *texture_data = (side == X) ? textures[texture_id] : textures[texture_id + 1];
 
     int index = start * video.width + x;
 

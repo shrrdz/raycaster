@@ -98,7 +98,7 @@ void R_Raycast()
             }
 
             // the ray has hit a wall
-            if (tiles[(int) ray_position.x][(int) ray_position.y] == 1)
+            if (map_tiles[(int) ray_position.x][(int) ray_position.y] == 1)
             {
                 break;
             }
@@ -117,6 +117,6 @@ void R_Raycast()
         R_RenderColumn(x, wall_end + 1, video.height - 1, COLOR_FLOOR);
 
         // render the walls
-        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side);
+        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side, map_textures[(int) ray_position.x][(int) ray_position.y]);
     }
 }
