@@ -4,16 +4,19 @@ byte **textures;
 
 void R_InitTextures()
 {
-    // TODO: include the count of textures in the ARC file instead of hardcoding it here
-    int texture_count = 2;
+    int first_texture = A_FindEntry("T_START") + 1;
+    int last_texture = A_FindEntry("T_END") - 1;
+
+    int texture_count = last_texture - first_texture + 1;
 
     textures = malloc(texture_count * sizeof(byte *));
+
+    int entry_index = first_texture;
 
     for (int i = 0; i < texture_count; i++)
     {
         textures[i] = malloc(TEXTURE_SIZE * TEXTURE_SIZE * sizeof(byte));
-    }
 
-    memcpy(textures[0], A_GetEntry("TEXTURE0"), TEXTURE_SIZE * TEXTURE_SIZE * sizeof(byte));
-    memcpy(textures[1], A_GetEntry("TEXTURE1"), TEXTURE_SIZE * TEXTURE_SIZE * sizeof(byte));
+        memcpy(textures[i], A_GetEntryByIndex(entry_index++), TEXTURE_SIZE * TEXTURE_SIZE * sizeof(byte));
+    }
 }
