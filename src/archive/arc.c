@@ -78,6 +78,11 @@ int A_FindEntry(const char *name)
     return -1;
 }
 
+int A_GetEntrySize(const char *name)
+{
+    return entries[A_FindEntry(name)].size;
+}
+
 void *A_GetEntry(const char *name)
 {
     return entry_data[A_FindEntry(name)];

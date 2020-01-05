@@ -67,6 +67,11 @@ void A_ReadEntry(int entry, void *destination);
 int A_FindEntry(const char *name);
 
 /*
+    returns the size of the desired entry in bytes
+*/
+int A_GetEntrySize(const char *name);
+
+/*
     returns the data of the desired entry from the cache
 */
 void *A_GetEntry(const char *name);
