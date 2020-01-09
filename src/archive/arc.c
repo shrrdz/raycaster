@@ -114,6 +114,8 @@ void A_CacheEntries()
     A_ReadEntry(A_FindEntry("TILEMAP"), entry_data[cache_index++]);
     A_ReadEntry(A_FindEntry("TEXTMAP"), entry_data[cache_index++]);
 
+    A_ReadEntry(A_FindEntry("DOORS"), entry_data[cache_index++]);
+
     // "T_START" and "T_END" entries serve as texture data delimiters
     int first_texture = A_FindEntry("T_START") + 1;
     int last_texture = A_FindEntry("T_END") - 1;

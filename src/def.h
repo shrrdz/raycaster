@@ -38,6 +38,12 @@ typedef struct vec2
 #define COLOR_FLOOR     video.palette[7]
 #define COLOR_CEILING   video.palette[4]
 
+// tile types
+
+#define T_NONE          0
+#define T_WALL          (1 << 0)
+#define T_DOOR          (1 << 1)
+
 //-----------------------------------------------------//
 
 #define max(x, y) (((x) > (y)) ? (x) : (y))
@@ -57,6 +63,7 @@ typedef struct vec2
 #include "interface/print.h"
 #include "interface/tick.h"
 
+#include "play/door.h"
 #include "play/level.h"
 #include "play/player.h"
 

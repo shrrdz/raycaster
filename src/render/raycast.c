@@ -82,6 +82,19 @@ void R_Raycast()
                 intercept.x += step.x;
                 ray_position.x += tile_step.x;
 
+                // door tile in x
+                if (map_tiles[(int) ray_position.x][(int) ray_position.y] & T_DOOR)
+                {
+                    // offset the wall by half a tile
+                    if (intercept.x - (step.x * 0.5F) < intercept.y)
+                    {
+                        distance = intercept.x - (step.x * 0.5F);
+                        hit = player.position.y + ray_direction.y * distance;
+
+                        break;
+                    }
+                }
+
                 distance = intercept.x - step.x;
                 hit = player.position.y + ray_direction.y * distance;
             }
@@ -93,12 +106,25 @@ void R_Raycast()
                 intercept.y += step.y;
                 ray_position.y += tile_step.y;
 
+                // door tile in y
+                if (map_tiles[(int) ray_position.x][(int) ray_position.y] & T_DOOR)
+                {
+                    // offset the wall by half a tile
+                    if (intercept.y - (step.y * 0.5F) < intercept.x)
+                    {
+                        distance = intercept.y - (step.y * 0.5F);
+                        hit = player.position.x + ray_direction.x * distance;
+
+                        break;
+                    }
+                }
+
                 distance = intercept.y - step.y;
                 hit = player.position.x + ray_direction.x * distance;
             }
 
-            // the ray has hit a wall
-            if (map_tiles[(int) ray_position.x][(int) ray_position.y] == 1)
+            // the ray has hit a wall (excluding special tiles)
+            if (map_tiles[(int) ray_position.x][(int) ray_position.y] & T_WALL)
             {
                 break;
             }
