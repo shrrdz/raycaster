@@ -3,6 +3,8 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+#define PLAYER_SCALE            0.75F
+
 #define PLAYER_SPEED            4.0F
 #define PLAYER_SPEED_SPRINT     8.0F
 
@@ -26,5 +28,7 @@ void P_InitPlayer();
 
 void P_PlayerTranslate(vec2 direction, float speed);
 void P_PlayerRotate(float radians);
+
+bool P_PlayerCollides(float dx, float dy);
 
 #endif // __PLAYER_H__
