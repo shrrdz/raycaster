@@ -7,5 +7,6 @@ extern byte map_tiles[MAP_SIZE][MAP_SIZE];
 extern byte map_textures[MAP_SIZE][MAP_SIZE];
 
 void P_InitLevel();
+void P_UpdateLevel();
 
 #endif // __LEVEL_H__

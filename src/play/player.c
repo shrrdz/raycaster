@@ -76,7 +76,13 @@ bool P_PlayerCollides(float dx, float dy)
                 case T_NONE: continue;
 
                 case T_WALL: return true;
-                case T_DOOR: return true;
+
+                case T_DOOR:
+                    if (map_doors[x][y]->state != D_OPEN)
+                    {
+                        return true;
+                    }
+                break;
             }
         }
     }

@@ -71,6 +71,8 @@ void R_Raycast()
         // side of the wall hit by the ray
         wall_side side = X;
 
+        door_t *door = NULL;
+
         // cast a ray to each block on the grid using DDA until it hits a wall
         for (;;)
         {
@@ -88,10 +90,17 @@ void R_Raycast()
                     // offset the wall by half a tile
                     if (intercept.x - (step.x * 0.5F) < intercept.y)
                     {
+                        door = map_doors[(int) ray_position.x][(int) ray_position.y];
+
                         distance = intercept.x - (step.x * 0.5F);
                         hit = player.position.y + ray_direction.y * distance;
 
-                        break;
+                        if (frac(hit) > door->open)
+                        {
+                            hit -= door->open;
+
+                            break;
+                        }
                     }
                 }
 
@@ -112,10 +121,17 @@ void R_Raycast()
                     // offset the wall by half a tile
                     if (intercept.y - (step.y * 0.5F) < intercept.x)
                     {
+                        door = map_doors[(int) ray_position.x][(int) ray_position.y];
+
                         distance = intercept.y - (step.y * 0.5F);
                         hit = player.position.x + ray_direction.x * distance;
 
-                        break;
+                        if (frac(hit) > door->open)
+                        {
+                            hit -= door->open;
+
+                            break;
+                        }
                     }
                 }
 

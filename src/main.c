@@ -16,6 +16,8 @@ int main()
         I_AcceptInput();
         I_Tick();
 
+        P_UpdateLevel();
+
         R_Raycast();
 
         V_Update();

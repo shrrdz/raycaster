@@ -10,3 +10,8 @@ void P_InitLevel()
 
     P_InitDoors();
 }
+
+void P_UpdateLevel()
+{
+    P_UpdateDoors();
+}
