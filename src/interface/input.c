@@ -68,6 +68,21 @@ void I_InputEvent()
 
                 switch (event.key.keysym.sym)
                 {
+                    // action button
+                    case SDLK_SPACE:
+                        vec2 tile =
+                        {
+                            player.position.x + player.direction.x,
+                            player.position.y + player.direction.y
+                        };
+
+                        // open a door
+                        if ((map_tiles[(int) tile.x][(int) tile.y] & T_DOOR) && map_doors[(int) tile.x][(int) tile.y]->state == D_CLOSED)
+                        {
+                            map_doors[(int) tile.x][(int) tile.y]->state = D_OPENING;
+                        }
+                    break;
+
                     case SDLK_ESCAPE:
                         SDL_Quit();
                         exit(EXIT_SUCCESS);
