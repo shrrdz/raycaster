@@ -34,6 +34,7 @@ void P_UpdateDoors()
         {
             case D_CLOSED:
                 door->open = 0.0F;
+                door->ticker = door->hold;
             break;
 
             case D_OPENING:
@@ -47,6 +48,25 @@ void P_UpdateDoors()
 
             case D_OPEN:
                 door->open = 1.0F;
+
+                if (door->ticker >= 0.0F)
+                {
+                    door->ticker -= tick_delta;
+                }
+
+                if (door->ticker <= 0.0F && door->hold >= 0.0F)
+                {
+                    door->state = D_CLOSING;
+                }
+            break;
+
+            case D_CLOSING:
+                door->open -= door->speed * tick_delta;
+
+                if (door->open <= 0.0F)
+                {
+                    door->state = D_CLOSED;
+                }
             break;
         }
     }

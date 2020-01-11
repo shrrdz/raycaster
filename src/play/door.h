@@ -9,15 +9,21 @@ typedef struct door_t
 
     int texture_id;
 
-    // opening speed
+    // opening and closing speed
     float speed;
+
+    // how long the door stays open before closing (< 0 = never closes)
+    float hold;
 
     // 0 = fully closed, 1 = fully open
     float open;
 
+    // countdown for the closure of the door
+    float ticker;
+
     enum door_state
     {
-        D_CLOSED, D_OPENING, D_OPEN
+        D_CLOSED, D_OPENING, D_OPEN, D_CLOSING
     } state;
 } door_t;
 
