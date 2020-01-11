@@ -54,7 +54,7 @@ void P_UpdateDoors()
                     door->ticker -= tick_delta;
                 }
 
-                if (door->ticker <= 0.0F && door->hold >= 0.0F)
+                if (door->ticker <= 0.0F && door->hold >= 0.0F && !P_PlayerAt(door->x, door->y))
                 {
                     door->state = D_CLOSING;
                 }

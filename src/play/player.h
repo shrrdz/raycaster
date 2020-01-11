@@ -29,6 +29,8 @@ void P_InitPlayer();
 void P_PlayerTranslate(vec2 direction, float speed);
 void P_PlayerRotate(float radians);
 
+bool P_PlayerAt(int x, int y);
+
 bool P_PlayerCollides(float dx, float dy);
 
 #endif // __PLAYER_H__
