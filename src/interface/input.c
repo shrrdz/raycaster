@@ -70,16 +70,16 @@ void I_InputEvent()
                 {
                     // action button
                     case SDLK_SPACE:
-                        vec2 tile =
+                        ivec2 tile =
                         {
-                            player.position.x + player.direction.x,
-                            player.position.y + player.direction.y
+                            (int) (player.position.x + player.direction.x),
+                            (int) (player.position.y + player.direction.y)
                         };
 
                         // open a door
-                        if ((map_tiles[(int) tile.x][(int) tile.y] & T_DOOR) && map_doors[(int) tile.x][(int) tile.y]->state == D_CLOSED)
+                        if ((map_tiles[tile.x][tile.y] & T_DOOR) && map_doors[tile.x][tile.y]->state == D_CLOSED)
                         {
-                            map_doors[(int) tile.x][(int) tile.y]->state = D_OPENING;
+                            map_doors[tile.x][tile.y]->state = D_OPENING;
                         }
                     break;
 

@@ -32,6 +32,11 @@ typedef struct vec2
     float x, y;
 } vec2;
 
+typedef struct ivec2
+{
+    int x, y;
+} ivec2;
+
 //-----------------------------------------------------//
 
 #define MAP_SIZE        8

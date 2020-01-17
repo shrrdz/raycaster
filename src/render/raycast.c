@@ -27,10 +27,10 @@ void R_Raycast()
         float ndc_x = 2.0F * x / video.width - 1.0F;
 
         // current position of the ray
-        vec2 ray_position =
+        ivec2 ray_position =
         {
-            floorf(player.position.x),
-            floorf(player.position.y)
+            (int) floorf(player.position.x),
+            (int) floorf(player.position.y)
         };
 
         // direction of the ray in world space
@@ -56,7 +56,7 @@ void R_Raycast()
         };
 
         // size of the tile step (signed depending on the direction the ray travels)
-        vec2 tile_step =
+        ivec2 tile_step =
         {
             sign(ray_direction.x),
             sign(ray_direction.y)
@@ -85,12 +85,12 @@ void R_Raycast()
                 ray_position.x += tile_step.x;
 
                 // door tile in x
-                if (map_tiles[(int) ray_position.x][(int) ray_position.y] & T_DOOR)
+                if (map_tiles[ray_position.x][ray_position.y] & T_DOOR)
                 {
                     // offset the wall by half a tile
                     if (intercept.x - (step.x * 0.5F) < intercept.y)
                     {
-                        door = map_doors[(int) ray_position.x][(int) ray_position.y];
+                        door = map_doors[ray_position.x][ray_position.y];
 
                         distance = intercept.x - (step.x * 0.5F);
                         hit = player.position.y + ray_direction.y * distance;
@@ -116,12 +116,12 @@ void R_Raycast()
                 ray_position.y += tile_step.y;
 
                 // door tile in y
-                if (map_tiles[(int) ray_position.x][(int) ray_position.y] & T_DOOR)
+                if (map_tiles[ray_position.x][ray_position.y] & T_DOOR)
                 {
                     // offset the wall by half a tile
                     if (intercept.y - (step.y * 0.5F) < intercept.x)
                     {
-                        door = map_doors[(int) ray_position.x][(int) ray_position.y];
+                        door = map_doors[ray_position.x][ray_position.y];
 
                         distance = intercept.y - (step.y * 0.5F);
                         hit = player.position.x + ray_direction.x * distance;
@@ -140,7 +140,7 @@ void R_Raycast()
             }
 
             // the ray has hit a wall (excluding special tiles)
-            if (map_tiles[(int) ray_position.x][(int) ray_position.y] & T_WALL)
+            if (map_tiles[ray_position.x][ray_position.y] & T_WALL)
             {
                 break;
             }
@@ -159,6 +159,6 @@ void R_Raycast()
         R_RenderColumn(x, wall_end + 1, video.height - 1, COLOR_FLOOR);
 
         // render the walls
-        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side, map_textures[(int) ray_position.x][(int) ray_position.y]);
+        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side, map_textures[ray_position.x][ray_position.y]);
     }
 }
