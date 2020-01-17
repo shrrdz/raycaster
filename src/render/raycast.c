@@ -73,6 +73,8 @@ void R_Raycast()
 
         door_t *door = NULL;
 
+        pushable_t *pushable = NULL;
+
         // cast a ray to each block on the grid using DDA until it hits a wall
         for (;;)
         {
@@ -104,6 +106,21 @@ void R_Raycast()
                     }
                 }
 
+                // push tile in x
+                if (map_tiles[ray_position.x][ray_position.y] & T_PUSH)
+                {
+                    pushable = map_pushables[ray_position.x][ray_position.y];
+
+                    // offset the wall depending on the position of the pushable
+                    if (intercept.x - (step.x * pushable->open) < intercept.y)
+                    {
+                        distance = intercept.x - (step.x * pushable->open);
+                        hit = player.position.y + ray_direction.y * distance;
+
+                        break;
+                    }
+                }
+
                 distance = intercept.x - step.x;
                 hit = player.position.y + ray_direction.y * distance;
             }
@@ -132,6 +149,21 @@ void R_Raycast()
 
                             break;
                         }
+                    }
+                }
+
+                // push tile in y
+                if (map_tiles[ray_position.x][ray_position.y] & T_PUSH)
+                {
+                    pushable = map_pushables[ray_position.x][ray_position.y];
+
+                    // offset the wall depending on the position of the pushable
+                    if (intercept.y - (step.y * pushable->open) < intercept.x)
+                    {
+                        distance = intercept.y - (step.y * pushable->open);
+                        hit = player.position.x + ray_direction.x * distance;
+
+                        break;
                     }
                 }
 

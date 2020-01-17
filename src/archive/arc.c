@@ -115,6 +115,7 @@ void A_CacheEntries()
     A_ReadEntry(A_FindEntry("TEXTMAP"), entry_data[cache_index++]);
 
     A_ReadEntry(A_FindEntry("DOORS"), entry_data[cache_index++]);
+    A_ReadEntry(A_FindEntry("PUSHABLS"), entry_data[cache_index++]);
 
     // "T_START" and "T_END" entries serve as texture data delimiters
     int first_texture = A_FindEntry("T_START") + 1;

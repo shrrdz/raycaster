@@ -49,6 +49,7 @@ typedef struct ivec2
 #define T_NONE          0
 #define T_WALL          (1 << 0)
 #define T_DOOR          (1 << 1)
+#define T_PUSH          (1 << 2)
 
 //-----------------------------------------------------//
 
@@ -72,6 +73,7 @@ typedef struct ivec2
 #include "play/door.h"
 #include "play/level.h"
 #include "play/player.h"
+#include "play/push.h"
 
 #include "render/raycast.h"
 #include "render/render.h"

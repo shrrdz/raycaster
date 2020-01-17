@@ -81,6 +81,12 @@ void I_InputEvent()
                         {
                             map_doors[tile.x][tile.y]->state = D_OPENING;
                         }
+
+                        // push a pushable
+                        if ((map_tiles[tile.x][tile.y] & T_PUSH) && map_pushables[tile.x][tile.y]->state == P_CLOSED)
+                        {
+                            map_pushables[tile.x][tile.y]->state = P_OPENING;
+                        }
                     break;
 
                     case SDLK_ESCAPE:
