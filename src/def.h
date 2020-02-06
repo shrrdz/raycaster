@@ -39,17 +39,21 @@ typedef struct ivec2
 
 //-----------------------------------------------------//
 
-#define MAP_SIZE        8
+#define MAP_SIZE            8
 
-#define COLOR_FLOOR     video.palette[7]
-#define COLOR_CEILING   video.palette[4]
+#define COLOR_FLOOR         video.palette[7]
+#define COLOR_CEILING       video.palette[4]
 
 // tile types
 
-#define T_NONE          0
-#define T_WALL          (1 << 0)
-#define T_DOOR          (1 << 1)
-#define T_PUSH          (1 << 2)
+#define T_NONE              0
+#define T_WALL              (1 << 0)
+#define T_DOOR              (1 << 1)
+#define T_PUSH              (1 << 2)
+
+// special palette indexes
+
+#define PID_TRANSPARENT     255
 
 //-----------------------------------------------------//
 
@@ -77,6 +81,7 @@ typedef struct ivec2
 
 #include "render/raycast.h"
 #include "render/render.h"
+#include "render/sprite.h"
 #include "render/texture.h"
 
 #include "video/video.h"

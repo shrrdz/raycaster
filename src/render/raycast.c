@@ -192,5 +192,7 @@ void R_Raycast()
 
         // render the walls
         R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side, map_textures[ray_position.x][ray_position.y]);
+
+        video.depth_buffer[x] = distance;
     }
 }

@@ -10,6 +10,8 @@ typedef struct video_t
 
     int palette[256];
     int *color_buffer;
+
+    float *depth_buffer;
 } video_t;
 
 extern video_t video;

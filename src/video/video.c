@@ -20,6 +20,7 @@ void V_Init(int width, int height)
     video.aspect_ratio = (float) video.width / (float) video.height;
 
     video.color_buffer = malloc(video.width * video.height * sizeof(int));
+    video.depth_buffer = malloc(video.width * sizeof(float));
 
     V_SetPalette(A_GetEntry("PALETTE"));
 }

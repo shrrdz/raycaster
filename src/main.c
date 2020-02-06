@@ -5,6 +5,7 @@ int main()
     A_ReadFile("arc/all.arc");
 
     R_InitTextures();
+    R_InitSprites();
 
     P_InitLevel();
     P_InitPlayer();
@@ -19,6 +20,8 @@ int main()
         P_UpdateLevel();
 
         R_Raycast();
+
+        R_RenderSprites();
 
         V_Update();
     }
