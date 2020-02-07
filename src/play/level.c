@@ -8,6 +8,16 @@ void P_InitLevel()
     memcpy(map_tiles, A_GetEntry("TILEMAP"), MAP_SIZE * MAP_SIZE * sizeof(byte));
     memcpy(map_textures, A_GetEntry("TEXTMAP"), MAP_SIZE * MAP_SIZE * sizeof(byte));
 
+    for (int i = 0; i < sprite_count; i++)
+    {
+        sprite_t *sprite = &sprites[i];
+
+        if (sprite->solid)
+        {
+            map_tiles[sprite->x][sprite->y] = T_SOLID;
+        }
+    }
+
     P_InitDoors();
     P_InitPushables();
 }

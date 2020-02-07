@@ -8,6 +8,9 @@ typedef struct sprite_t
     int x, y;
 
     int texture_id;
+
+    // whether the sprite is tested for collisions or not
+    bool solid;
 } sprite_t;
 
 extern sprite_t *sprites;

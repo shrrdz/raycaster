@@ -86,11 +86,11 @@ bool P_PlayerCollides(float dx, float dy)
         {
             switch (map_tiles[x][y])
             {
-                case T_NONE: continue;
+                case T_NONE:    continue;
 
-                case T_WALL: return true;
-
-                case T_PUSH: return true;
+                case T_WALL:    return true;
+                case T_PUSH:    return true;
+                case T_SOLID:   return true;
 
                 case T_DOOR:
                     if (map_doors[x][y]->state != D_OPEN)

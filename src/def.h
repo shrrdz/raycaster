@@ -50,6 +50,7 @@ typedef struct ivec2
 #define T_WALL              (1 << 0)
 #define T_DOOR              (1 << 1)
 #define T_PUSH              (1 << 2)
+#define T_SOLID             (1 << 3)
 
 // special palette indexes
 
