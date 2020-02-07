@@ -15,23 +15,26 @@ void R_InitSprites()
 
 void R_RenderSprites()
 {
-    // sort sprites by distance from the player in descending order
-    for (int i = 0; i < sprite_count; i++)
+    if (sprite_count > 1)
     {
-        for (int j = 0; j < sprite_count - i - 1; j++)
+        // sort sprites by distance from the player in descending order
+        for (int i = 0; i < sprite_count; i++)
         {
-            sprite_t *first = &sprites[j];
-            sprite_t *second = &sprites[j + 1];
-
-            float distance_first = (first->x - player.position.x) * (first->x - player.position.x) + (first->y - player.position.y) * (first->y - player.position.y);
-            float distance_second = (second->x - player.position.x) * (second->x - player.position.x) + (second->y - player.position.y) * (second->y - player.position.y);
-
-            if (distance_first < distance_second)
+            for (int j = 0; j < sprite_count - i - 1; j++)
             {
-                sprite_t stored = sprites[j];
+                sprite_t *first = &sprites[j];
+                sprite_t *second = &sprites[j + 1];
 
-                sprites[j] = sprites[j + 1];
-                sprites[j + 1] = stored;
+                float distance_first = (first->x - player.position.x) * (first->x - player.position.x) + (first->y - player.position.y) * (first->y - player.position.y);
+                float distance_second = (second->x - player.position.x) * (second->x - player.position.x) + (second->y - player.position.y) * (second->y - player.position.y);
+
+                if (distance_first < distance_second)
+                {
+                    sprite_t stored = sprites[j];
+
+                    sprites[j] = sprites[j + 1];
+                    sprites[j + 1] = stored;
+                }
             }
         }
     }
