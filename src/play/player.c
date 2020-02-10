@@ -27,10 +27,8 @@ void P_PlayerTranslate(vec2 direction, float speed)
         direction.x *= speed * tick_delta;
         direction.y *= speed * tick_delta;
 
-        // FIXME: when the player changes speed while running into a solid object, there is a possibility
-        //        of a sudden nudge that pushes the player closer towards that object
-        player.position.x += direction.x * !P_PlayerCollides(direction.x, 0.0F);
-        player.position.y += direction.y * !P_PlayerCollides(0.0F, direction.y);
+        player.position.x += direction.x * P_PlayerCollisionStep(direction.x, 0.0F, 8);
+        player.position.y += direction.y * P_PlayerCollisionStep(0.0F, direction.y, 8);
     }
 }
 
@@ -103,4 +101,32 @@ bool P_PlayerCollides(float dx, float dy)
     }
 
     return false;
+}
+
+float P_PlayerCollisionStep(float dx, float dy, int iterations)
+{
+    if (!P_PlayerCollides(dx, dy))
+    {
+        return 1.0F;
+    }
+
+    float lo = 0.0F;
+    float hi = 1.0F;
+
+    // perform binary search
+    for (int i = 0; i < iterations; i++)
+    {
+        float mid = (lo + hi) * 0.5F;
+
+        if (P_PlayerCollides(dx * mid, dy * mid))
+        {
+            hi = mid;
+        }
+        else
+        {
+            lo = mid;
+        }
+    }
+
+    return lo;
 }

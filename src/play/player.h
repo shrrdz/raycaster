@@ -33,4 +33,11 @@ bool P_PlayerAt(int x, int y);
 
 bool P_PlayerCollides(float dx, float dy);
 
+/*
+    returns the largest fraction of the step that doesn't collide
+
+    allows for relatively accurate collision detection regardless of the step size
+*/
+float P_PlayerCollisionStep(float dx, float dy, int iterations);
+
 #endif // __PLAYER_H__
