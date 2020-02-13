@@ -52,6 +52,10 @@ typedef struct ivec2
 #define T_PUSH              (1 << 2)
 #define T_SOLID             (1 << 3)
 
+// special texture ids
+
+#define TID_DOORFRAME       5
+
 // special palette indexes
 
 #define PID_TRANSPARENT     255

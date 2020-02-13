@@ -190,8 +190,17 @@ void R_Raycast()
         // render the floor
         R_RenderColumn(x, wall_end + 1, video.height - 1, COLOR_FLOOR);
 
+        int texture_id = map_textures[ray_position.x][ray_position.y];
+
+        // set texture of a tile's face that is adjacent to a face of a door tile to a doorframe
+        if (((map_tiles[ray_position.x - tile_step.x][ray_position.y] & T_DOOR) && side == X) ||
+            ((map_tiles[ray_position.x][ray_position.y - tile_step.y] & T_DOOR) && side == Y))
+        {
+            texture_id = TID_DOORFRAME;
+        }
+
         // render the walls
-        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side, map_textures[ray_position.x][ray_position.y]);
+        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side, texture_id);
 
         video.depth_buffer[x] = distance;
     }
