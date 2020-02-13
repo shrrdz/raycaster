@@ -81,7 +81,10 @@ void R_RenderSprites()
             continue;
         }
 
-        int sprite_width = (int) (video.height / depth);
+        // projection plane distance in pixels (pixels-per-unit at depth 1.0)
+        float focal_length = (video.width >> 1) / sqrt(player.plane.x * player.plane.x + player.plane.y * player.plane.y);
+
+        int sprite_width = (int) (focal_length / depth);
         int sprite_height = (int) (video.height / depth);
 
         int sprite_screen_space_x = (int) ((video.width >> 1) * (1 + sprite_position_view_space.x / sprite_position_view_space.y));
