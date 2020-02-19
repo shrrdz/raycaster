@@ -43,3 +43,16 @@ void R_RenderColumnTextured(int x, int start, int end, int wall_height, float wa
         video.color_buffer[index] = video.palette[palette_index];
     }
 }
+
+void R_RenderQuad(int x, int y, int width, int height, int color)
+{
+    if (width < 0 || x < 0 || x + width >= video.width || height < 0 || y < 0 || y + height >= video.height)
+    {
+        I_Error("R_RenderQuad(): width: %d height: %d at x: %d y: %d", width, height, x, y);
+    }
+
+    for (int c = x; c <= x + width; c++)
+    {
+        R_RenderColumn(c, y, y + height, color);
+    }
+}
