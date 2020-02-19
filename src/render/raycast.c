@@ -199,8 +199,15 @@ void R_Raycast()
             texture_id = TID_DOORFRAME;
         }
 
+        // darken the y-sided walls
+        if (side == Y)
+        {
+            // darker version of each texture is stored right next to the original version
+            texture_id++;
+        }
+
         // render the walls
-        R_RenderColumnTextured(x, wall_start, wall_end, wall_height, frac(hit), side, texture_id);
+        R_RenderColumnTextured(x, wall_start, wall_end, (video.height >> 1) - (wall_height >> 1), wall_height, frac(hit), textures[texture_id]);
 
         video.depth_buffer[x] = distance;
     }
