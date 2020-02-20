@@ -37,7 +37,10 @@ void R_RenderColumnTextured(int x, int start, int end, int texture_top, int text
 
         byte palette_index = texture[texture_v * TEXTURE_SIZE + texture_u];
 
-        video.color_buffer[index] = video.palette[palette_index];
+        if (palette_index != PID_TRANSPARENT)
+        {
+            video.color_buffer[index] = video.palette[palette_index];
+        }
     }
 }
 
