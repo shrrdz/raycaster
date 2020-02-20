@@ -90,33 +90,27 @@ void R_RenderSprites()
         int sprite_screen_space_x = (int) ((video.width >> 1) * (1 + sprite_position_view_space.x / sprite_position_view_space.y));
 
         int x_start = max(0, (-sprite_width >> 1) + sprite_screen_space_x);
-        int x_end = min((sprite_width >> 1) + sprite_screen_space_x, video.width);
+        int x_end = min((sprite_width >> 1) + sprite_screen_space_x, video.width - 1);
 
-        int y_start = max(0, (-sprite_height >> 1) + (video.height >> 1));
-        int y_end = min((sprite_height >> 1) + (video.height >> 1), video.height);
+        int texture_top = (video.height >> 1) - (sprite_height >> 1);
+
+        int y_start = max(0, texture_top);
+        int y_end = min(texture_top + sprite_height, video.height - 1);
 
         byte *texture_data = textures[sprite->texture_id];
 
-        for (int x = x_start; x < x_end; x++)
+        int sprite_left_edge = sprite_screen_space_x - (sprite_width >> 1);
+
+        for (int x = x_start; x <= x_end; x++)
         {
             if (depth > video.depth_buffer[x])
             {
                 continue;
             }
 
-            int texture_u = (x - (sprite_screen_space_x - (sprite_width >> 1))) * TEXTURE_SIZE / sprite_width;
+            float frac_u = (float) (x - sprite_left_edge) / (float) sprite_width;
 
-            for (int y = y_start; y < y_end; y++)
-            {
-                int texture_v = (((y << 1) - video.height + sprite_height) * TEXTURE_SIZE) / (sprite_height << 1);
-
-                byte palette_index = texture_data[texture_v * TEXTURE_SIZE + texture_u];
-
-                if (palette_index != PID_TRANSPARENT)
-                {
-                    video.color_buffer[y * video.width + x] = video.palette[palette_index];
-                }
-            }
+            R_RenderColumnTextured(x, y_start, y_end, texture_top, sprite_height, frac_u, texture_data);
         }
     }
 }
