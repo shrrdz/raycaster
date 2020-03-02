@@ -110,7 +110,7 @@ void R_RenderSprites()
 
             float frac_u = (float) (x - sprite_left_edge) / (float) sprite_width;
 
-            R_RenderColumnTextured(x, y_start, y_end, texture_top, sprite_height, frac_u, texture_data);
+            R_RenderColumnTextured(x, y_start, y_end, texture_top, sprite_height, frac_u, texture_data, TEXTURE_SIZE);
         }
     }
 }

@@ -15,7 +15,7 @@ void R_RenderColumn(int x, int start, int end, int color)
     }
 }
 
-void R_RenderColumnTextured(int x, int start, int end, int texture_top, int texture_height, float frac_u, const byte *texture)
+void R_RenderColumnTextured(int x, int start, int end, int texture_top, int texture_height, float frac_u, const byte *texture, int texture_size)
 {
     if (x < 0 || x >= video.width || start < 0 || end >= video.height)
     {
@@ -23,19 +23,19 @@ void R_RenderColumnTextured(int x, int start, int end, int texture_top, int text
     }
 
     // how far to step through the texture's v-axis per screen pixel
-    float texture_step_v = (float) TEXTURE_SIZE / (float) texture_height;
+    float texture_step_v = (float) texture_size / (float) texture_height;
 
     // u-coordinate of the texture (fixed for the whole screen column)
-    int texture_u = clamp(frac_u * TEXTURE_SIZE, 0, TEXTURE_SIZE - 1);
+    int texture_u = clamp(frac_u * texture_size, 0, texture_size - 1);
 
     int index = start * video.width + x;
 
     for (int y = start; y <= end; y++, index += video.width)
     {
         // v-coordinate of the texture
-        int texture_v = clamp((int) ((y - texture_top) * texture_step_v), 0, TEXTURE_SIZE - 1);
+        int texture_v = clamp((int) ((y - texture_top) * texture_step_v), 0, texture_size - 1);
 
-        byte palette_index = texture[texture_v * TEXTURE_SIZE + texture_u];
+        byte palette_index = texture[texture_v * texture_size + texture_u];
 
         if (palette_index != PID_TRANSPARENT)
         {
@@ -57,7 +57,7 @@ void R_RenderQuad(int x, int y, int width, int height, int color)
     }
 }
 
-void R_RenderQuadTextured(int x, int y, int width, int height, const byte *texture)
+void R_RenderQuadTextured(int x, int y, int width, int height, const byte *texture, int texture_size)
 {
     if (width < 0 || x < 0 || x + width >= video.width || height < 0 || y < 0 || y + height >= video.height)
     {
@@ -68,6 +68,6 @@ void R_RenderQuadTextured(int x, int y, int width, int height, const byte *textu
     {
         float frac_u = (float) (c - x) / (float) (width + 1);
 
-        R_RenderColumnTextured(c, y, y + height, y, height, frac_u, texture);
+        R_RenderColumnTextured(c, y, y + height, y, height, frac_u, texture, texture_size);
     }
 }

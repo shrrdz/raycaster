@@ -207,7 +207,7 @@ void R_Raycast()
         }
 
         // render the walls
-        R_RenderColumnTextured(x, wall_start, wall_end, (video.height >> 1) - (wall_height >> 1), wall_height, frac(hit), textures[texture_id]);
+        R_RenderColumnTextured(x, wall_start, wall_end, (video.height >> 1) - (wall_height >> 1), wall_height, frac(hit), textures[texture_id], TEXTURE_SIZE);
 
         video.depth_buffer[x] = distance;
     }
