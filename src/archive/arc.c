@@ -129,4 +129,16 @@ void A_CacheEntries()
 
     // add texture count and both delimiters
     cache_index += (last_texture - first_texture + 1 + 2);
+
+    // "G_START" and "G_END" entries serve as glyph data delimiters
+    int first_glyph = A_FindEntry("G_START") + 1;
+    int last_glyph = A_FindEntry("G_END") - 1;
+
+    for (int i = first_glyph; i <= last_glyph; i++)
+    {
+        A_ReadEntry(i, entry_data[i]);
+    }
+
+    // add glyph count and both delimiters
+    cache_index += (last_glyph - first_glyph + 1 + 2);
 }

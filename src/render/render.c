@@ -71,3 +71,34 @@ void R_RenderQuadTextured(int x, int y, int width, int height, const byte *textu
         R_RenderColumnTextured(c, y, y + height, y, height, frac_u, texture, texture_size);
     }
 }
+
+void R_RenderChar(char glyph, int x, int y, int size)
+{
+    if (size < 0 || x < 0 || x + size >= video.width || y < 0 || y + size >= video.height)
+    {
+        I_Error("R_RenderChar(): size: %d at x: %d y: %d", size, x, y);
+    }
+
+    // first printable character right after the non-printing control codes in the ASCII set
+    char first_glyph = ' ';
+
+    if (glyph < first_glyph)
+    {
+        return;
+    }
+
+    int index = glyph - first_glyph;
+
+    R_RenderQuadTextured(x, y, size, size, glyphs[index], GLYPH_SIZE);
+}
+
+void R_RenderString(const char *string, int x, int y, int size)
+{
+    while (*string)
+    {
+        R_RenderChar(*string, x, y, size);
+
+        x += size;
+        string++;
+    }
+}

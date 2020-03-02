@@ -6,6 +6,7 @@ int main()
 
     R_InitTextures();
     R_InitSprites();
+    R_InitGlyphs();
 
     P_InitLevel();
     P_InitPlayer();
@@ -22,6 +23,8 @@ int main()
         R_Raycast();
 
         R_RenderSprites();
+
+        R_RenderString("hello, world!", video.width >> 5, video.height >> 4, 40);
 
         V_Update();
     }

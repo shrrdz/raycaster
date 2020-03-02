@@ -84,6 +84,7 @@ typedef struct ivec2
 #include "play/player.h"
 #include "play/push.h"
 
+#include "render/glyph.h"
 #include "render/raycast.h"
 #include "render/render.h"
 #include "render/sprite.h"
