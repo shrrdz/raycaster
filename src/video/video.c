@@ -55,3 +55,16 @@ void V_SetPalette(const byte *palette)
         video.palette[i] = (0xFF << 24) | (b << 16) | (g << 8) | r;
     }
 }
+
+int V_AdaptiveScale(float scale)
+{
+    float reference_width = 320.0F;
+    float reference_height = 240.0F;
+
+    float scale_x = (float) video.width / reference_width;
+    float scale_y = (float) video.height / reference_height;
+
+    float result = (scale_x < scale_y) ? scale_x : scale_y;
+
+    return (int) roundf(result * scale);
+}

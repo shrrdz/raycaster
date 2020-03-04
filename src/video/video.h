@@ -36,4 +36,9 @@ void V_Clear(int color);
 */
 void V_SetPalette(const byte *palette);
 
+/*
+    scales the input to a size that adapts to different screen sizes
+*/
+int V_AdaptiveScale(float scale);
+
 #endif // __VIDEO_H__

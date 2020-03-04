@@ -24,7 +24,7 @@ int main()
 
         R_RenderSprites();
 
-        R_RenderString("hello, world!", video.width >> 5, video.height >> 4, 40);
+        R_RenderString("hello, world!", video.width >> 5, video.height >> 4, V_AdaptiveScale(15.0F));
 
         V_Update();
     }
