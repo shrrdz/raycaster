@@ -96,6 +96,10 @@ void I_InputEvent()
                 }
             break;
 
+            case SDL_MOUSEMOTION:
+                P_PlayerRotate(event.motion.xrel * INPUT_MOUSE_MOTION_SCALE * PLAYER_SENSITIVITY * tick_delta);
+            break;
+
             case SDL_QUIT:
                 SDL_Quit();
                 exit(EXIT_SUCCESS);

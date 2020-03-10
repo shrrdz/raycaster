@@ -14,6 +14,7 @@ void V_Init(int width, int height)
     texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, width, height);
 
     SDL_RenderSetVSync(renderer, 1);
+    SDL_SetRelativeMouseMode(SDL_TRUE);
 
     video.width = width;
     video.height = height;
