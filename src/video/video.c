@@ -47,7 +47,7 @@ void V_Clear(int color)
 
 void V_SetPalette(const byte *palette)
 {
-    for (int i = 0; i < 256; i++)
+    for (int i = 0; i < PALETTE_SIZE; i++)
     {
         byte r = palette[i * 3 + 0];
         byte g = palette[i * 3 + 1];

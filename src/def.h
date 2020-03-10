@@ -40,6 +40,7 @@ typedef struct ivec2
 //-----------------------------------------------------//
 
 #define MAP_SIZE            8
+#define PALETTE_SIZE        256
 
 #define COLOR_FLOOR         video.palette[7]
 #define COLOR_CEILING       video.palette[4]

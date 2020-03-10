@@ -8,7 +8,7 @@ typedef struct video_t
     int width, height;
     float aspect_ratio;
 
-    int palette[256];
+    int palette[PALETTE_SIZE];
     int *color_buffer;
 
     float *depth_buffer;
