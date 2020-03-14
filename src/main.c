@@ -2,7 +2,7 @@
 
 int main()
 {
-    A_ReadFile("arc/all.arc");
+    A_ReadFile("assets/all.arc");
 
     R_InitTextures();
     R_InitSprites();
