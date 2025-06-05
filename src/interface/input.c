@@ -4,7 +4,7 @@ SDL_Event event;
 
 void I_InputPoll()
 {
-    const uint8_t *key = SDL_GetKeyboardState(NULL);
+    const bool *key = SDL_GetKeyboardState(NULL);
 
     float speed = key[SDL_SCANCODE_LSHIFT] ? PLAYER_SPEED_SPRINT : PLAYER_SPEED;
 
@@ -59,14 +59,14 @@ void I_InputEvent()
     {
         switch (event.type)
         {
-            case SDL_KEYDOWN:
+            case SDL_EVENT_KEY_DOWN:
                 // only handle the initial press
                 if (event.key.repeat)
                 {
                     break;
                 }
 
-                switch (event.key.keysym.sym)
+                switch (event.key.key)
                 {
                     // action button
                     case SDLK_SPACE:
@@ -96,11 +96,11 @@ void I_InputEvent()
                 }
             break;
 
-            case SDL_MOUSEMOTION:
+            case SDL_EVENT_MOUSE_MOTION:
                 P_PlayerRotate(event.motion.xrel * INPUT_MOUSE_MOTION_SCALE * PLAYER_SENSITIVITY * tick_delta);
             break;
 
-            case SDL_QUIT:
+            case SDL_EVENT_QUIT:
                 SDL_Quit();
                 exit(EXIT_SUCCESS);
             break;

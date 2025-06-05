@@ -9,12 +9,12 @@ video_t video;
 void V_Init(int width, int height)
 {
     SDL_Init(SDL_INIT_VIDEO);
-    SDL_CreateWindowAndRenderer(width, height, SDL_WINDOW_HIDDEN, &window, &renderer);
+    SDL_CreateWindowAndRenderer("", width, height, 0, &window, &renderer);
 
     texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, width, height);
 
-    SDL_RenderSetVSync(renderer, 1);
-    SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_SetRenderVSync(renderer, 1);
+    SDL_SetWindowRelativeMouseMode(window, true);
 
     video.width = width;
     video.height = height;
@@ -31,10 +31,8 @@ void V_Update()
     SDL_UpdateTexture(texture, NULL, video.color_buffer, video.width * sizeof(int));
 
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderTexture(renderer, texture, NULL, NULL);
     SDL_RenderPresent(renderer);
-
-    SDL_ShowWindow(window);
 }
 
 void V_Clear(int color)

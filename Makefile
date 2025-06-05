@@ -17,7 +17,7 @@ clean:
 
 build:
 	mkdir -p $(out_dir)
-	gcc $(sources) $(flags) -I./lib/include -lSDL2 -o $(out_dir)/$(exe)
+	gcc $(sources) $(flags) -I./lib/include -lSDL3 -o $(out_dir)/$(exe)
 
 run:
 	$(MAKE) build
